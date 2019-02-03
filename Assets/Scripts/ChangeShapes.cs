@@ -9,15 +9,18 @@ public class ChangeShapes : MonoBehaviour
     public GameObject[] ShapeList;
     bool isCreated = true;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         ShapeSlider.maxValue = 2.0f;
         ShapeSlider.wholeNumbers = true;
 
         ShapeSlider.value = 0.0f;
         PoolObj(ShapeSlider.value, isCreated);
-    
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {            
         ShapeSlider.onValueChanged.AddListener(delegate { PoolObj(ShapeSlider.value, isCreated); });
     }
 
