@@ -7,19 +7,25 @@ public class ModifyColor : MonoBehaviour
     Color shapeColor;
     Material shapeMat;
     Renderer ShapeRend;
-    GameObject shape;
+
+    [HideInInspector]
+    public GameObject shape;
 
     // Start is called before the first frame update
-    void Start()
+    public void GetShape(GameObject theShape)
     {
-        shape = GameObject.FindGameObjectWithTag("Shape");
-        
+        shape = theShape;
         ShapeRend = shape.GetComponent<Renderer>();
         shapeMat = ShapeRend.material;
         shapeColor = shapeMat.color;
         Rslider.value = shapeColor.r;
         Gslider.value = shapeColor.g;
         Bslider.value = shapeColor.b;
+    }
+
+    private void Update()
+    {
+        UpdateColor();
     }
 
     void UpdateColor()
@@ -29,10 +35,5 @@ public class ModifyColor : MonoBehaviour
         shapeColor.b = Bslider.value;
 
         shapeMat.color = shapeColor;
-    }
-
-    private void Update()
-    {
-        UpdateColor();
     }
 }
