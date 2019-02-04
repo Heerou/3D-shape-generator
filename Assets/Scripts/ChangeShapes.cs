@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class ChangeShapes : MonoBehaviour
@@ -8,6 +6,9 @@ public class ChangeShapes : MonoBehaviour
     public Slider ShapeSlider;
     public GameObject[] ShapeList;
     bool isCreated = true;
+
+    GameObject shape;
+    GameObject currentShape;
 
     private void Awake()
     {
@@ -21,21 +22,34 @@ public class ChangeShapes : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {            
-        ShapeSlider.onValueChanged.AddListener(delegate { PoolObj(ShapeSlider.value, isCreated); });
+        ShapeSlider.onValueChanged.AddListener(delegate { ReInstatiate(ShapeSlider.value, true); });
     }
 
     void PoolObj(float number, bool created)
     {
-        GameObject shape;
+        isCreated = created;
         for (int i = (int)number; i <= ShapeList.Length; i++)
         {
             if (isCreated)
             {
-                Debug.Log(ShapeSlider.value);
                 shape = Instantiate(ShapeList[(int)number]);
                 shape.transform.SetParent(transform);
                 isCreated = false;
             }
         }
+    }
+
+    void ReInstatiate(float number, bool created)
+    {
+        isCreated = created;
+        currentShape = shape;
+
+        if (currentShape != null)
+        {
+            Destroy(currentShape);
+            shape = Instantiate(ShapeList[(int)number]);
+        }
+        shape.transform.SetParent(transform);
+        isCreated = false;
     }
 }
