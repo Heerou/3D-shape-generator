@@ -11,7 +11,11 @@ public class ModifyColor : MonoBehaviour
     [HideInInspector]
     public GameObject shape;
 
-    // Start is called before the first frame update
+    private void Update()
+    {
+        UpdateColor();
+    }
+
     public void GetShape(GameObject theShape)
     {
         shape = theShape;
@@ -21,11 +25,6 @@ public class ModifyColor : MonoBehaviour
         Rslider.value = shapeColor.r;
         Gslider.value = shapeColor.g;
         Bslider.value = shapeColor.b;
-    }
-
-    private void Update()
-    {
-        UpdateColor();
     }
 
     void UpdateColor()

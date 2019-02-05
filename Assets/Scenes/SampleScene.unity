@@ -615,7 +615,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 380810017}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: 
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &380810017
@@ -1200,11 +1211,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShapeSlider: {fileID: 1666510813}
-  ShapeList:
+  SaveBtn: {fileID: 380810016}
+  Shapes:
   - {fileID: 4091124176705121024, guid: c9263d55b0f8784499a9feaf30d85506, type: 3}
   - {fileID: 2975412716530359393, guid: be1928e5b11be694db4032bb2bf11656, type: 3}
   - {fileID: 4061274401398490239, guid: 289b661404a52dc4d94ea233c2b65701, type: 3}
   ShapeToColorize: {fileID: 0}
+  SavedShapeParent: {fileID: 1703431725}
 --- !u!114 &577678480
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2189,6 +2202,36 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!1 &1703431725
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1703431726}
+  m_Layer: 0
+  m_Name: SavedShapeParent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1703431726
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1703431725}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -7, y: 4, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1811594210
 GameObject:
   m_ObjectHideFlags: 0
