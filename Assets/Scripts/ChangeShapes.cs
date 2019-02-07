@@ -7,15 +7,16 @@ public class ChangeShapes : MonoBehaviour
     public Button SaveBtn;
     public GameObject[] Shapes;
     bool isCreated = true;
+    
+    public GameObject gridFather;
+    public Image sampleImg;
 
     GameObject shape;
     GameObject currentShape;
     GameObject savedShape;
-    
+
     [HideInInspector]
     public ModifyColor ShapeToColorize;
-    [SerializeField]
-    GameObject SavedShapeParent;
 
     private void Awake()
     {
@@ -29,7 +30,7 @@ public class ChangeShapes : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {        
+    {
         ShapeSlider.onValueChanged.AddListener(delegate { ReInstatiate(ShapeSlider.value, true); });
         SaveBtn.onClick.AddListener(delegate { SaveShape(); });
     }
@@ -43,7 +44,7 @@ public class ChangeShapes : MonoBehaviour
             {
                 shape = Instantiate(Shapes[(int)number]);
                 ShapeToColorize.GetShape(shape);
-                shape.transform.SetParent(transform);
+                shape.transform.SetParent(transform, false);
                 isCreated = false;
             }
         }
@@ -59,16 +60,20 @@ public class ChangeShapes : MonoBehaviour
             Destroy(currentShape);
             shape = Instantiate(Shapes[(int)number]);
             ShapeToColorize.GetShape(shape);
-            shape.transform.SetParent(transform);
+            shape.transform.SetParent(transform, false);
         }
-        shape.transform.SetParent(transform);
+        shape.transform.SetParent(transform, false);
         isCreated = false;
     }
 
     void SaveShape()
     {
+        Image img = Instantiate(sampleImg);
+        img.transform.SetParent(gridFather.transform, false);
+        img.transform.localPosition = Vector3.zero;
+
         savedShape = Instantiate(shape);
-        savedShape.transform.SetParent(SavedShapeParent.transform);
-        savedShape.transform.position = SavedShapeParent.transform.position;
+        savedShape.transform.SetParent(img.transform);
+        savedShape.transform.position = img.transform.position;
     }
 }
